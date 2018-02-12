@@ -1,12 +1,12 @@
 # Discord self bot
 Discord self bot is an easy to use interface that provides a self bot programmed in the c# language.
 
-You simply run the program, it retrieves your token from the local storage and press connect. The application will then go to the background and you can execute commands in diferent channels. The self bot only responds to you other people that execute commands are ignored, like a self bot should work.
+You simply run the program, enter your user token (can be found by pressing ctrl+shift+i on discord and looking for localstorage.token) and press connect. The application will then go to the background and you can execute commands in diferent channels. The self bot only responds to you other people that execute commands are ignored, like a self bot should work.
 
-The bot was a work in progress and uses the Discord.Net library see https://discord.foxbot.me/docs/index.html for more information.
+The bot was a work in progress and uses the Discord.Net library see https://discord.foxbot.me/docs/ for more information.
 
-## Project archived
-This project was archived, because self bots are no longer tolerated by the Discord staff, because of this reason this project was archived, using any code of this project is by your own risk, you can get banned for using a self bot.
+## NOT RECOMMENDED
+This project is not recommended for use because self bots are no longer tolerated by the Discord staff. Because of this reason, this project was archived, **using any code of this project is by your own risk**, you can get banned for using a self bot.
 
 ## License
 
