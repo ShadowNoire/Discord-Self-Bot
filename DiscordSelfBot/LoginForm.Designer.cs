@@ -106,10 +106,10 @@ namespace DiscordSelfBot
             this.tokenBox.Name = "tokenBox";
             this.tokenBox.Size = new System.Drawing.Size(168, 20);
             this.tokenBox.TabIndex = 3;
-            this.tokenBox.UseSystemPasswordChar = true;
             // 
             // LoginForm
             // 
+            this.AcceptButton = this.connectButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(197, 121);

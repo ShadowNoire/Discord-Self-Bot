@@ -16,6 +16,8 @@ along with Discord self bot.  If not, see<http://www.gnu.org/licenses/>.
 */
 
 
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
@@ -45,6 +47,31 @@ namespace DiscordSelfBot
                              $"Account created at {userInfo.CreatedAt}\n" +
                              $"Joined this guild at {userInfo.JoinedAt}");
             await Context.Message.DeleteAsync();
+        }
+
+        [Command("spam")]
+        [Summary("as described")]
+        public async Task spam(int count, [Remainder]string message)
+        {
+            for (int i = 0; i < count; i++)
+                await ReplyAsync(message);
+        }
+
+        [Command("prune")]
+        public async Task prune(int count)
+        {
+            
+            var messages = await Context.Channel.GetMessagesAsync(count).Flatten();
+            //messages.Select(x => x.DeleteAsync());
+            foreach (var x in messages)
+                try
+                {
+                    x.DeleteAsync().Wait();
+                }
+                catch (Exception)
+                {
+
+                }
         }
     }
 }

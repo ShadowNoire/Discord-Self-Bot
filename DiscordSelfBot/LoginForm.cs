@@ -35,28 +35,7 @@ namespace DiscordSelfBot
         public LoginForm()
         {
             InitializeComponent();
-            try
-            {
-                using (var conn = new SQLiteConnection($@"Data Source={Environment.GetEnvironmentVariable("appdata")}\discord\Local Storage\https_discordapp.com_0.localstorage;Version=3;"))
-                {
-                    using (var cmd = conn.CreateCommand())
-                    {
-                        conn.Open();
-                        cmd.CommandText = @"SELECT key, value FROM ItemTable where key = ""token""";
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                tokenBox.Text = reader.GetString(reader.GetOrdinal("value")).Trim('"');
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(Resources.LoginForm_Retrieving_token_failed, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            
         }
 
         /// <summary>
@@ -69,7 +48,7 @@ namespace DiscordSelfBot
         {
             connectButton.Enabled = false;
             Update();
-            var selfBot = new SelfBot(tokenBox.Text, this);
+            var selfBot = new SelfBot(tokenBox.Text.Replace("\"",""), this);
             var discordClient = selfBot.Start();
             uint count = 0;
             connectButton.TextAlign = ContentAlignment.MiddleLeft;
@@ -93,7 +72,7 @@ namespace DiscordSelfBot
                 Hide();
                 notifyIcon.Visible = true;
                 notifyIcon.ShowBalloonTip(500);
-                MessageBox.Show(Resources.LoginForm_loginOk, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                //MessageBox.Show(Resources.LoginForm_loginOk, Text, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else if (_exceptionThrown)
             {

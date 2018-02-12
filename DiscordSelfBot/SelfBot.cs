@@ -32,7 +32,7 @@ namespace DiscordSelfBot
     {
         private readonly LoginForm _callback;
         private readonly CommandService _commands;
-        private readonly DependencyMap _map;
+        //private readonly DependencyMap _map;
         private readonly string _token;
         private DiscordSocketClient _client;
 
@@ -44,7 +44,7 @@ namespace DiscordSelfBot
         public SelfBot(string token, LoginForm callback)
         {
             _callback = callback;
-            _map = new DependencyMap();
+           // _map = new DependencyMap();
             _commands = new CommandService();
             _token = token;
         }
@@ -54,7 +54,7 @@ namespace DiscordSelfBot
         /// </summary>
         public async void Dispose()
         {
-            await _client.DisconnectAsync();
+            await _client.LogoutAsync();
             _client.Dispose();
             _client = null;
             GC.SuppressFinalize(this);
@@ -83,7 +83,7 @@ namespace DiscordSelfBot
                 await _client.LoginAsync(TokenType.User, _token);
 
                 // Connect the client to Discord's gateway
-                await _client.ConnectAsync();
+                await _client.StartAsync();
 
                 //activate commands
                 await InstallCommands();
@@ -115,7 +115,7 @@ namespace DiscordSelfBot
         {
             // Don't process the command if it was a System Message
             var message = messageParam as SocketUserMessage;
-            if ((message == null) || (message.Author.Id != message.Discord.CurrentUser.Id)) return;
+            if ((message == null) || (message.Author.Id != message.Author.Id)) return;
             // Create a number to track where the prefix ends and the command begins
             var argPos = 0;
             // Determine if the message is a command, based on if it starts with '!' or a mention prefix
@@ -125,7 +125,7 @@ namespace DiscordSelfBot
             var context = new CommandContext(_client, message);
             // Execute the command. (result does not indicate a return value, 
             // rather an object stating if the command executed succesfully)
-            var result = await _commands.ExecuteAsync(context, argPos, _map);
+            var result = await _commands.ExecuteAsync(context, argPos);
             if (!result.IsSuccess)
                 await message.Channel.SendMessageAsync(result.ErrorReason);
         }
