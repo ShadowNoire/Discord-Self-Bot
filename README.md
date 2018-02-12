@@ -6,7 +6,7 @@ You simply run the program, enter your user token (can be found by pressing ctrl
 The bot was a work in progress and uses the Discord.Net library see https://discord.foxbot.me/docs/ for more information.
 
 ## NOT RECOMMENDED
-This project is not recommended for use because self bots are no longer tolerated by the Discord staff. Because of this reason, this project was archived, **using any code of this project is by your own risk**, you can get banned for using a self bot.
+This project is not recommended for use because self bots are no longer tolerated by the Discord staff. Because of this reason, this project was archived by the original dev. I updated it for educational purposes. **using any code of this project is by your own risk**, you can get banned for using a self bot.
 
 ## License
 
